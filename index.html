@@ -10,8 +10,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script src="index.js"></script>
     <nav class="navbar">
-        <a href="#home" class="nav-logo">Emmanuel</a>
+        <a href="#home" class="nav-logo" aria-label="Emmanuel Umoh"><span class="logo-icon">&lt;/&gt;</span></a>
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
@@ -106,6 +107,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         <h3>Unavailable</h3>
         <p>CV download is currently unavailable.</p>
         <button type="button" id="closePopupBtn">Close</button>
+    </div>
+</div>
+
+<div class="popup" id="successPopup" role="alert" aria-live="polite">
+    <div class="popup-box">
+        <h3>Message Sent</h3>
+        <p>Your message was sent successfully.</p>
+        <button type="button" id="closeSuccessPopupBtn">Close</button>
     </div>
 </div>
 
@@ -272,7 +281,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </div>
 
         <!-- RIGHT SIDE -->
-        <form class="contact-form" id="contactForm" action="https://formsubmit.co/bd7recovari@gmail.com" method="POST">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/bd7recovari@gmail.com" method="POST" novalidate>
             <input type="hidden" name="_subject" value="New message from your portfolio website">
             <input type="hidden" name="_captcha" value="false">
 
@@ -315,47 +324,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </section>
 
-<script>
-    const form = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    const cvBtn = document.getElementById('downloadCvBtn');
-    const cvPopup = document.getElementById('cvPopup');
-    const closePopupBtn = document.getElementById('closePopupBtn');
-
-    if (form) {
-        form.addEventListener('submit', function (event) {
-            const name = form.name.value.trim();
-            const email = form.email.value.trim();
-            const message = form.message.value.trim();
-
-            formStatus.className = 'form-status';
-            formStatus.textContent = '';
-
-            if (!name || !email || !message) {
-                event.preventDefault();
-                formStatus.className = 'form-status error';
-                formStatus.textContent = 'Please fill in your name, email, and message before sending.';
-            }
-        });
-    }
-
-    if (cvBtn && cvPopup && closePopupBtn) {
-        cvBtn.addEventListener('click', function (event) {
-            event.preventDefault();
-            cvPopup.classList.add('show');
-        });
-
-        closePopupBtn.addEventListener('click', function () {
-            cvPopup.classList.remove('show');
-        });
-
-        cvPopup.addEventListener('click', function (event) {
-            if (event.target === cvPopup) {
-                cvPopup.classList.remove('show');
-            }
-        });
-    }
-</script>
 </body>
 </html>
 
